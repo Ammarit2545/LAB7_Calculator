@@ -16,6 +16,25 @@ class _MyWidgetState extends State<MyApp> {
 
   buttonPressed(String value) {
     print(value);
+
+    setState(() {
+      if (value == "CLEAR") {
+        result = "0";
+      } else if (value == ".") {
+        if (result.contains(".")) {
+          return;
+        } else {
+          result = result + value;
+        }
+      } else if (value == "=") {
+      } else {
+        if (result == "0") {
+          result = value;
+        } else {
+          result = result + value;
+        }
+      }
+    });
   }
 
   Widget myButton(String buttonLabel) {
