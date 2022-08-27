@@ -12,11 +12,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyApp> {
+  String result = "0";
+
+  buttonPressed(String value) {
+    print(value);
+  }
+
   Widget myButton(String buttonLabel) {
-    return Expanded(
+    return Padding(
+      padding: EdgeInsets.all(24),
       child: OutlinedButton(
-        // padding : EdgeInsets.all(24),
-        onPressed: () {},
+        onPressed: () => buttonPressed(buttonLabel),
         child: Text(
           buttonLabel,
           style: TextStyle(
@@ -42,7 +48,7 @@ class _MyWidgetState extends State<MyApp> {
                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
                 alignment: Alignment.centerRight,
                 child: Text(
-                  "Result",
+                  result,
                   style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
                 ),
               ),
