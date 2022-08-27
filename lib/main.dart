@@ -27,6 +27,9 @@ class _MyWidgetState extends State<MyApp> {
         } else {
           result = result + value;
         }
+      } else if (value == "sin") {
+      } else if (result == "Infinity") {
+        value == "CLEAR";
       } else if (value == "=") {
         expression = result.replaceAll("X", "*");
         Parser p = Parser();
@@ -76,7 +79,7 @@ class _MyWidgetState extends State<MyApp> {
                 alignment: Alignment.centerRight,
                 child: Text(
                   result,
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 70, fontWeight: FontWeight.bold),
                 ),
               ),
               Expanded(
@@ -120,6 +123,7 @@ class _MyWidgetState extends State<MyApp> {
                     children: [
                       myButton("CLEAR"),
                       myButton("="),
+                      myButton("sin"),
                     ],
                   )
                 ],
