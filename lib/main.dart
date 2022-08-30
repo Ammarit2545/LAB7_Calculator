@@ -16,11 +16,61 @@ class _MyWidgetState extends State<MyApp> {
   String result = "0", expression = "";
 
   buttonPressed(String value) {
+    Theme:
+    ThemeData(
+      // This is the theme of your application.
+      //
+      // Try running your application with "flutter run". You'll see the
+      // application has a blue toolbar. Then, without quitting the app, try
+      // changing the primarySwatch below to Colors.green and then invoke
+      // "hot reload" (press "r" in the console where you ran "flutter run",
+      // or simply save your changes to "hot reload" in a Flutter IDE).
+      // Notice that the counter didn't reset back to zero; the application
+      // is not restarted.
+      primarySwatch: Colors.red,
+    );
     print(value);
 
     setState(() {
       if (value == "CLEAR") {
         result = "0";
+      } else if (value == "π") {
+        expression = result.replaceAll("X", "*");
+        Parser p = Parser();
+        Expression exp = p.parse(expression);
+        ContextModel cm = ContextModel();
+        dynamic calculate = exp.evaluate(EvaluationType.REAL, cm) * (22 / 7);
+
+        result = "$calculate";
+      } else if (value == "Tri") {
+        expression = result.replaceAll("X", "*");
+        Parser p = Parser();
+        Expression exp = p.parse(expression);
+        ContextModel cm = ContextModel();
+        dynamic calculate = (exp.evaluate(EvaluationType.REAL, cm) *
+                exp.evaluate(EvaluationType.REAL, cm)) *
+            (1.732 / 4);
+
+        result = "$calculate";
+      } else if (value == "Sqr") {
+        expression = result.replaceAll("X", "*");
+        Parser p = Parser();
+        Expression exp = p.parse(expression);
+        ContextModel cm = ContextModel();
+        dynamic calculate = (exp.evaluate(EvaluationType.REAL, cm) *
+            exp.evaluate(EvaluationType.REAL, cm));
+
+        result = "$calculate";
+      } else if (value == "Circle") {
+        expression = result.replaceAll("X", "*");
+        Parser p = Parser();
+        Expression exp = p.parse(expression);
+        ContextModel cm = ContextModel();
+        dynamic calculate = (exp.evaluate(EvaluationType.REAL, cm) *
+                exp.evaluate(EvaluationType.REAL, cm)) *
+            (22 / 7);
+
+        result = "$calculate";
       } else if (value == ".") {
         if (result.contains(".")) {
           return;
@@ -123,7 +173,14 @@ class _MyWidgetState extends State<MyApp> {
                     children: [
                       myButton("CLEAR"),
                       myButton("="),
-                      myButton("sin"),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      myButton("π"),
+                      myButton("Tri"),
+                      myButton("Sqr"),
+                      myButton("Circle"),
                     ],
                   )
                 ],
